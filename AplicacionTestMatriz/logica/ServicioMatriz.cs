@@ -146,14 +146,43 @@ namespace AplicacionTestMatriz.logica
                     if (j > 0 && j % 2 == 0)
                     {
                         matrizC[i, i] = r;
-                        matrizC[i, i+1] = s;
-                        matrizC[i+1, i] = t;
-                        matrizC[i+1, i+1] = u;
-
+                        matrizC[i, i + 1] = s;
+                        matrizC[i + 1, i] = t;
+                        matrizC[i + 1, i + 1] = u;
+                        
                         r = 0; s = 0; t = 0; u = 0;
                     }
-                }             
-                
+                    
+                   /*  
+                    for (int k = 2; k < n - 1; k += 2)
+                    {
+                        a = matA[i, j];
+                        b = matA[i, j + 1];
+                        c = matA[i + 1, j];
+                        d = matA[i + 1, j + 1];
+
+                        e = matB[i, k];
+                        f = matB[i+1, k];
+                        g = matB[i, k + 1];
+                        h = matB[i + 1, k + 1];
+
+                        r += (a * e) + (b * g);
+                        s += (a * f) + (b * h);
+                        t += (c * e) + (d * g);
+                        u += (c * f) + (d * h);
+
+                        if (k > 0 && k % 2 == 0)
+                        {
+                            matrizC[i, k] = r;
+                            matrizC[i, k + 1] = s;
+                            matrizC[i + 1, k] = t;
+                            matrizC[i + 1, k + 1] = u;
+
+                            r = 0; s = 0; t = 0; u = 0;
+                        }
+                    }
+                   */
+                }                           
             }
             return matrizC;
         }
