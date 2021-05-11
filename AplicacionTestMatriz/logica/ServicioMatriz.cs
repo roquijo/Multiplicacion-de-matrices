@@ -124,64 +124,37 @@ namespace AplicacionTestMatriz.logica
         {
             int a, b, c, d, e, f, g, h, r = 0, s = 0, t = 0, u = 0;
 
-            for (int i = 0; i < n-1; i++)
+            for (int i = 0; i < n; i+=2)
             {
-                for (int j = 0; j < n-1; j+=2)
-                {
-                    a = matA[i, j];
-                    b = matA[i, j + 1];
-                    c = matA[i + 1, j];
-                    d = matA[i + 1, j + 1];
-
-                    e = matB[j, i];
-                    f = matB[j, i + 1];
-                    g = matB[j + 1, i];
-                    h = matB[j + 1, i + 1];
-
-                    r += (a * e) + (b * g);
-                    s += (a * f) + (b * h);
-                    t += (c * e) + (d * g);
-                    u += (c * f) + (d * h);
-
-                    if (j > 0 && j % 2 == 0)
+                for (int j = 0; j < n; j+=2)
+                {                  
+                    for (int k = 0; k < n; k += 2)
                     {
-                        matrizC[i, i] = r;
-                        matrizC[i, i + 1] = s;
-                        matrizC[i + 1, i] = t;
-                        matrizC[i + 1, i + 1] = u;
-                        
-                        r = 0; s = 0; t = 0; u = 0;
-                    }
-                    
-                   /*  
-                    for (int k = 2; k < n - 1; k += 2)
-                    {
-                        a = matA[i, j];
-                        b = matA[i, j + 1];
-                        c = matA[i + 1, j];
-                        d = matA[i + 1, j + 1];
+                        a = matA[j, k];
+                        b = matA[j, k + 1];
+                        c = matA[j + 1, k];
+                        d = matA[j + 1, k + 1];
 
-                        e = matB[i, k];
-                        f = matB[i+1, k];
-                        g = matB[i, k + 1];
-                        h = matB[i + 1, k + 1];
+                        e = matB[k, i];
+                        f = matB[k, i + 1];
+                        g = matB[k + 1, i];
+                        h = matB[k + 1, i + 1];
 
                         r += (a * e) + (b * g);
                         s += (a * f) + (b * h);
                         t += (c * e) + (d * g);
                         u += (c * f) + (d * h);
 
-                        if (k > 0 && k % 2 == 0)
+                        if ((n == 2) || (k > 0 && k % (n-2) == 0))
                         {
-                            matrizC[i, k] = r;
-                            matrizC[i, k + 1] = s;
-                            matrizC[i + 1, k] = t;
-                            matrizC[i + 1, k + 1] = u;
+                            matrizC[j, i] = r;
+                            matrizC[j, i + 1] = s;
+                            matrizC[j + 1, i] = t;
+                            matrizC[j + 1, i + 1] = u;
 
                             r = 0; s = 0; t = 0; u = 0;
                         }
-                    }
-                   */
+                    }                                      
                 }                           
             }
             return matrizC;
