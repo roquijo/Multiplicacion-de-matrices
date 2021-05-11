@@ -114,6 +114,34 @@ namespace AplicacionTestMatriz
 
             matTem = ServicioMatriz.llenarMultiplicacionParticionMatrizC(n);
             llenarMatriz(matrizC, matTem);
+
+            txtParticion.Text = ServicioMatriz.getTiempoParticion().Elapsed.TotalMilliseconds +" ms";
+        }
+
+        private void btnStrassen_Click(object sender, EventArgs e)
+        {
+            crearMatriz(matrizC);
+            ServicioMatriz.crearMatrizC(n);
+
+            int[,] matTem;
+
+            matTem = ServicioMatriz.llenarMultiplicacionStrassen(n);
+            llenarMatriz(matrizC, matTem);
+
+
+            txtStrassen.Text = ServicioMatriz.getTiempoStrassen().Elapsed.TotalMilliseconds + " ms";
+        }
+
+        private void btnWinograd_Click_1(object sender, EventArgs e)
+        {
+            crearMatriz(matrizC);
+            ServicioMatriz.crearMatrizC(n);
+
+            int[,] matTem;
+
+            matTem = ServicioMatriz.llenarMultiplicacionWinograd(n);
+            llenarMatriz(matrizC, matTem);
+            txtWinograd.Text = ServicioMatriz.getTiempoWinograd().Elapsed.TotalMilliseconds + " ms";
         }
     }
 }
