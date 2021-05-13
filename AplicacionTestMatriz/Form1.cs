@@ -143,5 +143,29 @@ namespace AplicacionTestMatriz
             llenarMatriz(matrizC, matTem);
             txtWinograd.Text = ServicioMatriz.getTiempoWinograd().Elapsed.TotalMilliseconds + " ms";
         }
+
+        private void btnExperimentar_Click_1(object sender, EventArgs e)
+        {
+           /* int numFila;
+            int iter = 0;
+
+            usuarios = Usuario.getUsuarios();
+
+            gridUsuarios.Rows.Clear();
+
+            foreach (Cliente cliente in usuarios)
+            {
+                numFila = gridUsuarios.Rows.Add();
+                iter++;
+
+                gridUsuarios.Rows[numFila].Cells[0].Value = iter;
+                gridUsuarios.Rows[numFila].Cells[1].Value = cliente.getID();
+                gridUsuarios.Rows[numFila].Cells[2].Value = cliente.getNombre();
+                gridUsuarios.Rows[numFila].Cells[3].Value = cliente.getApellido();
+                gridUsuarios.Rows[numFila].Cells[4].Value = cliente.getTipoCuenta();
+                gridUsuarios.Rows[numFila].Cells[5].Value = cliente.getTelefono();
+                gridUsuarios.Rows[numFila].Cells[6].Value = cliente.getFechaN();
+           */
+        }
     }
 }
