@@ -23,6 +23,7 @@ namespace AplicacionTestMatriz
 
         int n = 0;
         ServicioMatriz serv = new ServicioMatriz();
+        List<Experimentacion> listaExp = new List<Experimentacion>();
 
         private void btnCrearMatriz_Click(object sender, EventArgs e)
         {
@@ -152,7 +153,8 @@ namespace AplicacionTestMatriz
             int numFila;
             int iter = 0;
 
-            List<Experimentacion> listaExp = serv.experimentacion(Convert.ToInt32(txtM.Text));
+            listaExp.Clear();
+            listaExp = serv.experimentacion(Convert.ToInt32(txtM.Text));
 
             gridTiempos.Rows.Clear();
 
@@ -162,28 +164,43 @@ namespace AplicacionTestMatriz
                 iter++;
 
                 gridTiempos.Rows[numFila].Cells[0].Value = exp.getMatriz();
-                gridTiempos.Rows[numFila].Cells[1].Value = exp.getParticion().Elapsed.TotalMilliseconds + " ms";
-                gridTiempos.Rows[numFila].Cells[2].Value = exp.getStrassen().Elapsed.TotalMilliseconds + " ms";
-                gridTiempos.Rows[numFila].Cells[3].Value = exp.getWinograd().Elapsed.TotalMilliseconds + " ms";
+                gridTiempos.Rows[numFila].Cells[1].Value = exp.getParticion() + " ms";
+                gridTiempos.Rows[numFila].Cells[2].Value = exp.getStrassen() + " ms";
+                gridTiempos.Rows[numFila].Cells[3].Value = exp.getWinograd() + " ms";
             }
         }
 
         private void btnGraficar_Click(object sender, EventArgs e)
-        {
-            List<Experimentacion> listaExp = serv.experimentacion(Convert.ToInt32(txtM.Text));
-            Series series = new Series("Particion");
-            series.ChartType = SeriesChartType.Line;          
+        {            
+            Series serieParticion = new Series("Particion");
+            serieParticion.ChartType = SeriesChartType.Line;
 
-            
-            foreach (Experimentacion exp in listaExp)
+            Series serieStrassen = new Series("Strassen");
+            serieStrassen.ChartType = SeriesChartType.Line;
+
+            Series serieWinograd = new Series("Winograd");
+            serieWinograd.ChartType = SeriesChartType.Line;
+
+            double[] puntosYParticion = new double[listaExp.Count];
+            double[] puntosYStrassen = new double[listaExp.Count];
+            double[] puntosYWinograd = new double[listaExp.Count];
+            int[] x = new int[listaExp.Count];
+
+
+            for (int i = 0; i < listaExp.Count; i++)
             {
-               // series.Points.
+                puntosYParticion[i] = listaExp.ElementAt(i).getParticion();
+                puntosYStrassen[i] = listaExp.ElementAt(i).getStrassen();
+                puntosYWinograd[i] = listaExp.ElementAt(i).getWinograd();
+                x[i] = listaExp.ElementAt(i).getMatriz();
             }
+            serieParticion.Points.DataBindXY(x, puntosYParticion);
+            serieStrassen.Points.DataBindXY(x, puntosYStrassen);
+            serieWinograd.Points.DataBindXY(x, puntosYWinograd);
 
-            
-
-            
-            grafico.Series.Add(series);
+            grafico.Series.Add(serieParticion);
+            grafico.Series.Add(serieStrassen);
+            grafico.Series.Add(serieWinograd);
         }
     }
 }

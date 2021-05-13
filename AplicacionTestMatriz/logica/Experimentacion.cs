@@ -10,11 +10,11 @@ namespace AplicacionTestMatriz.logica
     class Experimentacion
     {
         private int matriz;
-        private Stopwatch particion;
-        private Stopwatch strassen;
-        private Stopwatch winograd;
+        private double particion;
+        private double strassen;
+        private double winograd;
 
-        public Experimentacion(int pMatriz, Stopwatch pParticion, Stopwatch pStrassen, Stopwatch pWinograd)
+        public Experimentacion(int pMatriz, double pParticion, double pStrassen, double pWinograd)
         {
             matriz = pMatriz;
             particion = pParticion;
@@ -27,17 +27,17 @@ namespace AplicacionTestMatriz.logica
             return matriz;
         }
 
-        public Stopwatch getParticion()
+        public double getParticion()
         {
             return particion;
         }
 
-        public Stopwatch getStrassen()
+        public double getStrassen()
         {
             return strassen;
         }
 
-        public Stopwatch getWinograd()
+        public double getWinograd()
         {
             return winograd;
         }
