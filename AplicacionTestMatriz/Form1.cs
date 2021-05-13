@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace AplicacionTestMatriz
 {
@@ -17,9 +18,11 @@ namespace AplicacionTestMatriz
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         int n = 0;
+        ServicioMatriz serv = new ServicioMatriz();
 
         private void btnCrearMatriz_Click(object sender, EventArgs e)
         {
@@ -112,10 +115,10 @@ namespace AplicacionTestMatriz
 
             int[,] matTem;
 
-            matTem = ServicioMatriz.llenarMultiplicacionParticionMatrizC(n);
+            matTem = serv.llenarMultiplicacionParticionMatrizC(n);
             llenarMatriz(matrizC, matTem);
 
-            txtParticion.Text = ServicioMatriz.getTiempoParticion().Elapsed.TotalMilliseconds + " ms";
+            txtParticion.Text = serv.getTiempoParticion().Elapsed.TotalMilliseconds + " ms";
         }
 
         private void btnStrassen_Click(object sender, EventArgs e)
@@ -125,11 +128,11 @@ namespace AplicacionTestMatriz
 
             int[,] matTem;
 
-            matTem = ServicioMatriz.llenarMultiplicacionStrassen(n);
+            matTem = serv.llenarMultiplicacionStrassen(n);
             llenarMatriz(matrizC, matTem);
 
 
-            txtStrassen.Text = ServicioMatriz.getTiempoStrassen().Elapsed.TotalMilliseconds + " ms";
+            txtStrassen.Text = serv.getTiempoStrassen().Elapsed.TotalMilliseconds + " ms";
         }
 
         private void btnWinograd_Click_1(object sender, EventArgs e)
@@ -139,9 +142,9 @@ namespace AplicacionTestMatriz
 
             int[,] matTem;
 
-            matTem = ServicioMatriz.llenarMultiplicacionWinograd(n);
+            matTem = serv.llenarMultiplicacionWinograd(n);
             llenarMatriz(matrizC, matTem);
-            txtWinograd.Text = ServicioMatriz.getTiempoWinograd().Elapsed.TotalMilliseconds + " ms";
+            txtWinograd.Text = serv.getTiempoWinograd().Elapsed.TotalMilliseconds + " ms";
         }
 
         private void btnExperimentar_Click_1(object sender, EventArgs e)
@@ -149,7 +152,7 @@ namespace AplicacionTestMatriz
             int numFila;
             int iter = 0;
 
-            List<Experimentacion> listaExp = ServicioMatriz.experimentacion(Convert.ToInt32(txtM.Text));
+            List<Experimentacion> listaExp = serv.experimentacion(Convert.ToInt32(txtM.Text));
 
             gridTiempos.Rows.Clear();
 
@@ -162,9 +165,25 @@ namespace AplicacionTestMatriz
                 gridTiempos.Rows[numFila].Cells[1].Value = exp.getParticion().Elapsed.TotalMilliseconds + " ms";
                 gridTiempos.Rows[numFila].Cells[2].Value = exp.getStrassen().Elapsed.TotalMilliseconds + " ms";
                 gridTiempos.Rows[numFila].Cells[3].Value = exp.getWinograd().Elapsed.TotalMilliseconds + " ms";
-
-
             }
+        }
+
+        private void btnGraficar_Click(object sender, EventArgs e)
+        {
+            List<Experimentacion> listaExp = serv.experimentacion(Convert.ToInt32(txtM.Text));
+            Series series = new Series("Particion");
+            series.ChartType = SeriesChartType.Line;          
+
+            
+            foreach (Experimentacion exp in listaExp)
+            {
+               // series.Points.
+            }
+
+            
+
+            
+            grafico.Series.Add(series);
         }
     }
 }

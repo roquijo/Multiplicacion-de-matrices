@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.matrizA = new System.Windows.Forms.DataGridView();
             this.matrizB = new System.Windows.Forms.DataGridView();
             this.matrizC = new System.Windows.Forms.DataGridView();
@@ -52,7 +52,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtM = new System.Windows.Forms.TextBox();
             this.btnExperimentar = new System.Windows.Forms.Button();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.grafico = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnGraficar = new System.Windows.Forms.Button();
             this.gridTiempos = new System.Windows.Forms.DataGridView();
             this.Matriz = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,7 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.matrizA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrizB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrizC)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grafico)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTiempos)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -254,21 +254,21 @@
             this.btnExperimentar.UseVisualStyleBackColor = true;
             this.btnExperimentar.Click += new System.EventHandler(this.btnExperimentar_Click_1);
             // 
-            // chart1
+            // grafico
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(494, 60);
-            this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(581, 316);
-            this.chart1.TabIndex = 18;
-            this.chart1.Text = "chart1";
+            chartArea1.Name = "ChartArea1";
+            this.grafico.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.grafico.Legends.Add(legend1);
+            this.grafico.Location = new System.Drawing.Point(494, 60);
+            this.grafico.Name = "grafico";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.grafico.Series.Add(series1);
+            this.grafico.Size = new System.Drawing.Size(581, 316);
+            this.grafico.TabIndex = 18;
+            this.grafico.Text = "chart1";
             // 
             // btnGraficar
             // 
@@ -278,6 +278,7 @@
             this.btnGraficar.TabIndex = 22;
             this.btnGraficar.Text = "Graficar";
             this.btnGraficar.UseVisualStyleBackColor = true;
+            this.btnGraficar.Click += new System.EventHandler(this.btnGraficar_Click);
             // 
             // gridTiempos
             // 
@@ -343,7 +344,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.txtM);
             this.panel2.Controls.Add(this.gridTiempos);
-            this.panel2.Controls.Add(this.chart1);
+            this.panel2.Controls.Add(this.grafico);
             this.panel2.Controls.Add(this.btnGraficar);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.btnExperimentar);
@@ -365,7 +366,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.matrizA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrizB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrizC)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grafico)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTiempos)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -398,7 +399,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtM;
         private System.Windows.Forms.Button btnExperimentar;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart grafico;
         private System.Windows.Forms.Button btnGraficar;
         private System.Windows.Forms.DataGridView gridTiempos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Matriz;

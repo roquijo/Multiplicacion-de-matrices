@@ -17,11 +17,11 @@ namespace AplicacionTestMatriz.logica
 
         private static int[,] matrizExperimentacion;
 
-        private static Stopwatch tiempoParticion = new Stopwatch();
+        private  Stopwatch tiempoParticion = new Stopwatch();
 
-        private static Stopwatch tiempoStrassen = new Stopwatch();
+        private  Stopwatch tiempoStrassen = new Stopwatch();
 
-        private static Stopwatch tiempoWinograd = new Stopwatch();
+        private  Stopwatch tiempoWinograd = new Stopwatch();       
 
         private static Random generador = new Random(Environment.TickCount);
 
@@ -41,15 +41,15 @@ namespace AplicacionTestMatriz.logica
             n = pN;
         }
 
-        public static Stopwatch getTiempoParticion()
+        public  Stopwatch getTiempoParticion()
         {
             return tiempoParticion;
         }
-        public static Stopwatch getTiempoStrassen()
+        public  Stopwatch getTiempoStrassen()
         {
             return tiempoStrassen;
         }
-        public static Stopwatch getTiempoWinograd()
+        public  Stopwatch getTiempoWinograd()
         {
             return tiempoWinograd;
         }
@@ -95,15 +95,15 @@ namespace AplicacionTestMatriz.logica
             return multiplicarMatriz(n, matrizA, matrizB);
         }
 
-        public static int[,] llenarMultiplicacionParticionMatrizC(int n)
+        public int[,] llenarMultiplicacionParticionMatrizC(int n)
         {
             return multiplicarMatrizParticion(n, matrizA, matrizB);
         }
-        public static int[,] llenarMultiplicacionStrassen(int n)
+        public int[,] llenarMultiplicacionStrassen(int n)
         {
             return multiplicarMatrizStrassen(n, matrizA, matrizB);
         }
-        public static int[,] llenarMultiplicacionWinograd(int n)
+        public int[,] llenarMultiplicacionWinograd(int n)
         {
             return multiplicarMatrizWinograd(n, matrizA, matrizB);
         }
@@ -174,9 +174,8 @@ namespace AplicacionTestMatriz.logica
             return matrizC;
         }
 
-        public static int[,] multiplicarMatrizParticion(int n, int[,] matA, int[,] matB)
-        {
-            tiempoParticion.Restart();          
+        public int[,] multiplicarMatrizParticion(int n, int[,] matA, int[,] matB)
+        {                   
             tiempoParticion.Start(); 
             
             int a, b, c, d, e, f, g, h, r = 0, s = 0, t = 0, u = 0;
@@ -223,9 +222,8 @@ namespace AplicacionTestMatriz.logica
             return matrizC;
         }
 
-        public static int[,] multiplicarMatrizStrassen(int n, int[,] matA, int[,] matB)
-        {
-            tiempoStrassen.Restart();
+        public int[,] multiplicarMatrizStrassen(int n, int[,] matA, int[,] matB)
+        {            
             tiempoStrassen.Start();
 
             int a, b, c, d, e, f, g, h, r = 0, s = 0, t = 0, u = 0, p1, p2, p3, p4, p5, p6, p7;
@@ -280,9 +278,8 @@ namespace AplicacionTestMatriz.logica
             return matrizC;
         }
 
-        public static int[,] multiplicarMatrizWinograd(int n, int[,] matA, int[,] matB)
-        {
-            tiempoWinograd.Restart();
+        public  int[,] multiplicarMatrizWinograd(int n, int[,] matA, int[,] matB)
+        {           
             tiempoWinograd.Start();
 
             int a, b, c, d, e, f, g, h, r = 0, s = 0, t = 0, u = 0, p1, p2, p3, p4, p5, p6, p7;
@@ -337,7 +334,7 @@ namespace AplicacionTestMatriz.logica
             return matrizC;
         }
 
-        public static List<Experimentacion> experimentacion(int n)
+        public  List<Experimentacion> experimentacion(int n)
         {
             Experimentacion exp;
             listaExperimentacion = new List<Experimentacion>();
@@ -346,20 +343,14 @@ namespace AplicacionTestMatriz.logica
             {
                 int[,] matExp = crearMatrizExperimentacion(i);
 
-                tiempoParticion.Restart();
-                tiempoParticion.Start();
-                multiplicarMatrizParticion(i, matExp, matExp);
-                tiempoParticion.Stop();               
+                tiempoParticion.Restart();                
+                multiplicarMatrizParticion(i, matExp, matExp);                
 
-                tiempoStrassen.Restart();
-                tiempoStrassen.Start();
-                multiplicarMatrizStrassen(i, matExp, matExp);
-                tiempoStrassen.Stop();
-                
+                tiempoStrassen.Restart();                
+                multiplicarMatrizStrassen(i, matExp, matExp);              
+
                 tiempoWinograd.Restart();
-                tiempoWinograd.Start();
-                multiplicarMatrizWinograd(i, matExp, matExp);
-                tiempoWinograd.Stop();
+                multiplicarMatrizWinograd(i, matExp, matExp);                
 
                 exp = new Experimentacion(i, tiempoParticion, tiempoStrassen, tiempoWinograd);
                 listaExperimentacion.Add(exp);
