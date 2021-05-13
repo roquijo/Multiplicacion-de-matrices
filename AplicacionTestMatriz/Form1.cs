@@ -32,13 +32,13 @@ namespace AplicacionTestMatriz
             ServicioMatriz.crearMatrizB(n);
         }
 
-        private void llenarMatriz(DataGridView dgv, int [,]mat)
-        {                    
+        private void llenarMatriz(DataGridView dgv, int[,] mat)
+        {
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < n; j++)
                 {
-                    dgv.Rows[i].Cells[j].Value = mat[i,j];
+                    dgv.Rows[i].Cells[j].Value = mat[i, j];
                 }
             }
         }
@@ -46,24 +46,24 @@ namespace AplicacionTestMatriz
         private void crearMatriz(DataGridView mat)
         {
             DataTable dt = new DataTable();
-            DataRow dr;           
-            
+            DataRow dr;
+
             for (int i = 1; i <= n; i++)
             {
                 dt.Columns.Add(new DataColumn("C" + i));
             }
-            
+
             for (int i = 0; i < n; i++)
             {
                 dr = dt.NewRow();
                 int j = 1;
-                while(j <= n)
+                while (j <= n)
                 {
-                   dr["C"+j] = "";
-                   j++;
-                }               
+                    dr["C" + j] = "";
+                    j++;
+                }
                 dt.Rows.Add(dr);
-            }          
+            }
             mat.DataSource = dt;
 
             for (int i = 0; i < n; i++)
@@ -74,8 +74,8 @@ namespace AplicacionTestMatriz
 
         private void btnLlenarMatriz_Click(object sender, EventArgs e)
         {
-            int  [,] matTem;
-            
+            int[,] matTem;
+
             matTem = ServicioMatriz.llenarMatrizA(n);
             llenarMatriz(matrizA, matTem);
 
@@ -89,9 +89,9 @@ namespace AplicacionTestMatriz
             ServicioMatriz.crearMatrizC(n);
 
             int[,] matTem;
-            
+
             matTem = ServicioMatriz.llenarSumaMatrizC(n);
-            llenarMatriz(matrizC, matTem);            
+            llenarMatriz(matrizC, matTem);
         }
 
         private void btnMultiplicarMatrices_Click(object sender, EventArgs e)
@@ -115,7 +115,7 @@ namespace AplicacionTestMatriz
             matTem = ServicioMatriz.llenarMultiplicacionParticionMatrizC(n);
             llenarMatriz(matrizC, matTem);
 
-            txtParticion.Text = ServicioMatriz.getTiempoParticion().Elapsed.TotalMilliseconds +" ms";
+            txtParticion.Text = ServicioMatriz.getTiempoParticion().Elapsed.TotalMilliseconds + " ms";
         }
 
         private void btnStrassen_Click(object sender, EventArgs e)
@@ -146,26 +146,25 @@ namespace AplicacionTestMatriz
 
         private void btnExperimentar_Click_1(object sender, EventArgs e)
         {
-           /* int numFila;
+            int numFila;
             int iter = 0;
 
-            usuarios = Usuario.getUsuarios();
+            List<Experimentacion> listaExp = ServicioMatriz.experimentacion(Convert.ToInt32(txtM.Text));
 
-            gridUsuarios.Rows.Clear();
+            gridTiempos.Rows.Clear();
 
-            foreach (Cliente cliente in usuarios)
+            foreach (Experimentacion exp in listaExp)
             {
-                numFila = gridUsuarios.Rows.Add();
+                numFila = gridTiempos.Rows.Add();
                 iter++;
 
-                gridUsuarios.Rows[numFila].Cells[0].Value = iter;
-                gridUsuarios.Rows[numFila].Cells[1].Value = cliente.getID();
-                gridUsuarios.Rows[numFila].Cells[2].Value = cliente.getNombre();
-                gridUsuarios.Rows[numFila].Cells[3].Value = cliente.getApellido();
-                gridUsuarios.Rows[numFila].Cells[4].Value = cliente.getTipoCuenta();
-                gridUsuarios.Rows[numFila].Cells[5].Value = cliente.getTelefono();
-                gridUsuarios.Rows[numFila].Cells[6].Value = cliente.getFechaN();
-           */
+                gridTiempos.Rows[numFila].Cells[0].Value = exp.getMatriz();
+                gridTiempos.Rows[numFila].Cells[1].Value = exp.getParticion().Elapsed.TotalMilliseconds + " ms";
+                gridTiempos.Rows[numFila].Cells[2].Value = exp.getStrassen().Elapsed.TotalMilliseconds + " ms";
+                gridTiempos.Rows[numFila].Cells[3].Value = exp.getWinograd().Elapsed.TotalMilliseconds + " ms";
+
+
+            }
         }
     }
 }
