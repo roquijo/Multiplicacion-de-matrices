@@ -171,7 +171,8 @@ namespace AplicacionTestMatriz
         }
 
         private void btnGraficar_Click(object sender, EventArgs e)
-        {            
+        {
+            grafico.Series.Clear();         
             Series serieParticion = new Series("Particion");
             serieParticion.ChartType = SeriesChartType.Line;
 

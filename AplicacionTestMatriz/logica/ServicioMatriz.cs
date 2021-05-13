@@ -343,6 +343,7 @@ namespace AplicacionTestMatriz.logica
 
             for (int i = 2; i <= n; i++)
             {
+                crearMatrizC(i);
                 int[,] matExp = crearMatrizExperimentacion(i);
                               
                 multiplicarMatrizParticion(i, matExp, matExp);
