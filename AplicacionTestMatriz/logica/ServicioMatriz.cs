@@ -27,7 +27,9 @@ namespace AplicacionTestMatriz.logica
 
         private  List<Experimentacion> listaExperimentacion;
 
+        private static int min = 1;
 
+        private static int max = 10;
 
         private static int n = 0;
 
@@ -39,6 +41,24 @@ namespace AplicacionTestMatriz.logica
         public static void setN(int pN)
         {
             n = pN;
+        }
+        public static int getMin()
+        {
+            return min;
+        }
+
+        public static void setMin(int pMin)
+        {
+            min = pMin;
+        }
+        public static int getMax()
+        {
+            return max;
+        }
+
+        public static void setMax(int pMax)
+        {
+            max = pMax;
         }
 
         public  Stopwatch getTiempoParticion()
@@ -118,7 +138,7 @@ namespace AplicacionTestMatriz.logica
                 {
                     for (int j = 0; j < n - 1; j++)
                     {
-                        x = generador.Next(1, 10);
+                        x = generador.Next(min, max);
                         mat[i, j] = x;
                     }
                 }
@@ -129,7 +149,7 @@ namespace AplicacionTestMatriz.logica
                 {
                     for (int j = 0; j < n; j++)
                     {
-                        x = generador.Next(1, 10);
+                        x = generador.Next(min, max);
                         mat[i, j] = x;
 
                     }

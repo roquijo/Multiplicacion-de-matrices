@@ -187,7 +187,6 @@ namespace AplicacionTestMatriz
             double[] puntosYWinograd = new double[listaExp.Count];
             int[] x = new int[listaExp.Count];
 
-
             for (int i = 0; i < listaExp.Count; i++)
             {
                 puntosYParticion[i] = listaExp.ElementAt(i).getParticion();
@@ -195,6 +194,7 @@ namespace AplicacionTestMatriz
                 puntosYWinograd[i] = listaExp.ElementAt(i).getWinograd();
                 x[i] = listaExp.ElementAt(i).getMatriz();
             }
+
             serieParticion.Points.DataBindXY(x, puntosYParticion);
             serieStrassen.Points.DataBindXY(x, puntosYStrassen);
             serieWinograd.Points.DataBindXY(x, puntosYWinograd);
@@ -202,6 +202,20 @@ namespace AplicacionTestMatriz
             grafico.Series.Add(serieParticion);
             grafico.Series.Add(serieStrassen);
             grafico.Series.Add(serieWinograd);
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {          
+                try
+                {
+                    ServicioMatriz.setMin(Convert.ToInt32(txtMin.Text));
+                    ServicioMatriz.setMax(Convert.ToInt32(txtMax.Text));
+                    MessageBox.Show("Valores asignados");
+                }
+                catch
+                {
+                    MessageBox.Show("Valores por defecto asignados");
+                }                         
         }
     }
 }
