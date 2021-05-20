@@ -21,7 +21,9 @@ namespace AplicacionTestMatriz.logica
 
         private  Stopwatch tiempoStrassen = new Stopwatch();
 
-        private  Stopwatch tiempoWinograd = new Stopwatch();       
+        private  Stopwatch tiempoWinograd = new Stopwatch();
+
+        private Stopwatch tiempoRusos = new Stopwatch();
 
         private static Random generador = new Random(Environment.TickCount);
 
@@ -72,6 +74,11 @@ namespace AplicacionTestMatriz.logica
         public  Stopwatch getTiempoWinograd()
         {
             return tiempoWinograd;
+        }
+
+        public Stopwatch getTiempoRusos()
+        {
+            return tiempoRusos;
         }
 
         public static void crearMatrizA(int n)
@@ -354,28 +361,65 @@ namespace AplicacionTestMatriz.logica
             return matrizC;
         }
 
-        public  List<Experimentacion> experimentacion(int n)
+        public int[,] multiplicarRusos(int n, int[,] matA, int[,] matB)
+        {
+            tiempoRusos.Restart();
+
+            int m = (int)Math.Log(n,2);
+           
+            int nm = (int)Math.Round(Convert.ToDouble(n/m));
+
+            int[,] rowsumA = new int[n,nm];
+            rowsumA = matA;
+
+            int[,] rowsumB = new int[nm, n];
+            rowsumB = matB;
+
+            int[,] rowsum = new int[n, n];
+
+            for (int i = 1; i < nm; i++)
+            {
+                rowsum[0,i-1] = 0;
+
+                for (int j = 1; j < (Math.Pow(2,m)-1); j++)
+                {
+                    int k = (int)Math.Log(j, 2);
+                    int jmenos2k = j - (int)Math.Pow(2, k);
+                    //rowsum[j] = rowsum[jmenos2k] +...;
+                }
+                for (int k = 1; k < n; k++)
+                {
+                    
+                }
+            }           
+            tiempoRusos.Stop();
+            return matrizC;
+        }
+
+        public List<Experimentacion> experimentacion(int n)
         {
             Experimentacion exp;
             listaExperimentacion = new List<Experimentacion>();
-            double particion, strassen, winograd;
-            
+            double particion, strassen, winograd, rusos;
 
             for (int i = 2; i <= n; i++)
             {
                 crearMatrizC(i);
                 int[,] matExp = crearMatrizExperimentacion(i);
-                              
+
                 multiplicarMatrizParticion(i, matExp, matExp);
                 particion = tiempoParticion.Elapsed.TotalMilliseconds;
-                            
-                multiplicarMatrizStrassen(i, matExp, matExp); 
+
+                multiplicarMatrizStrassen(i, matExp, matExp);
                 strassen = tiempoStrassen.Elapsed.TotalMilliseconds;
 
-                multiplicarMatrizWinograd(i, matExp, matExp); 
+                multiplicarMatrizWinograd(i, matExp, matExp);
                 winograd = tiempoWinograd.Elapsed.TotalMilliseconds;
 
-                exp = new Experimentacion(i, particion, strassen, winograd);
+                multiplicarRusos(i, matExp, matExp);
+                rusos = tiempoRusos.Elapsed.TotalMilliseconds;
+
+                exp = new Experimentacion(i, particion, strassen, winograd, rusos);
                 listaExperimentacion.Add(exp);
             }
             return listaExperimentacion;

@@ -182,9 +182,13 @@ namespace AplicacionTestMatriz
             Series serieWinograd = new Series("Winograd");
             serieWinograd.ChartType = SeriesChartType.Line;
 
+            Series serieRusos = new Series("Rusos");
+            serieWinograd.ChartType = SeriesChartType.Line;
+
             double[] puntosYParticion = new double[listaExp.Count];
             double[] puntosYStrassen = new double[listaExp.Count];
             double[] puntosYWinograd = new double[listaExp.Count];
+            double[] puntosYRusos = new double[listaExp.Count];
             int[] x = new int[listaExp.Count];
 
             for (int i = 0; i < listaExp.Count; i++)
@@ -192,16 +196,19 @@ namespace AplicacionTestMatriz
                 puntosYParticion[i] = listaExp.ElementAt(i).getParticion();
                 puntosYStrassen[i] = listaExp.ElementAt(i).getStrassen();
                 puntosYWinograd[i] = listaExp.ElementAt(i).getWinograd();
+                puntosYRusos[i] = listaExp.ElementAt(i).getRusos();
                 x[i] = listaExp.ElementAt(i).getMatriz();
             }
 
             serieParticion.Points.DataBindXY(x, puntosYParticion);
             serieStrassen.Points.DataBindXY(x, puntosYStrassen);
             serieWinograd.Points.DataBindXY(x, puntosYWinograd);
+            serieRusos.Points.DataBindXY(x, puntosYRusos);
 
             grafico.Series.Add(serieParticion);
             grafico.Series.Add(serieStrassen);
             grafico.Series.Add(serieWinograd);
+            grafico.Series.Add(serieRusos);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -214,7 +221,9 @@ namespace AplicacionTestMatriz
                 }
                 catch
                 {
-                    MessageBox.Show("Valores por defecto asignados");
+                    ServicioMatriz.setMin(1);
+                    ServicioMatriz.setMax(10);
+                MessageBox.Show("Valores por defecto asignados");
                 }                         
         }
     }

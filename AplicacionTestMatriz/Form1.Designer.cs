@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.matrizA = new System.Windows.Forms.DataGridView();
             this.matrizB = new System.Windows.Forms.DataGridView();
             this.matrizC = new System.Windows.Forms.DataGridView();
@@ -62,13 +62,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtMin = new System.Windows.Forms.TextBox();
-            this.txtMax = new System.Windows.Forms.TextBox();
-            this.btnAceptar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.txtMax = new System.Windows.Forms.TextBox();
+            this.txtMin = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.matrizA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrizB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrizC)).BeginInit();
@@ -265,16 +265,16 @@
             // 
             // grafico
             // 
-            chartArea5.Name = "ChartArea1";
-            this.grafico.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.grafico.Legends.Add(legend5);
+            chartArea1.Name = "ChartArea1";
+            this.grafico.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.grafico.Legends.Add(legend1);
             this.grafico.Location = new System.Drawing.Point(494, 60);
             this.grafico.Name = "grafico";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.grafico.Series.Add(series5);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.grafico.Series.Add(series1);
             this.grafico.Size = new System.Drawing.Size(581, 316);
             this.grafico.TabIndex = 18;
             this.grafico.Text = "chart1";
@@ -357,7 +357,7 @@
             this.panel2.Controls.Add(this.btnGraficar);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.btnExperimentar);
-            this.panel2.Location = new System.Drawing.Point(20, 375);
+            this.panel2.Location = new System.Drawing.Point(20, 369);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1089, 426);
             this.panel2.TabIndex = 25;
@@ -377,46 +377,14 @@
             this.panel3.Size = new System.Drawing.Size(1089, 58);
             this.panel3.TabIndex = 26;
             // 
-            // label5
+            // label8
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 21);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Rango de valores.";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(138, 21);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Min = ";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(288, 21);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(39, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Max = ";
-            // 
-            // txtMin
-            // 
-            this.txtMin.Location = new System.Drawing.Point(175, 18);
-            this.txtMin.Name = "txtMin";
-            this.txtMin.Size = new System.Drawing.Size(100, 20);
-            this.txtMin.TabIndex = 3;
-            // 
-            // txtMax
-            // 
-            this.txtMax.Location = new System.Drawing.Point(333, 18);
-            this.txtMax.Name = "txtMax";
-            this.txtMax.Size = new System.Drawing.Size(100, 20);
-            this.txtMax.TabIndex = 4;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(572, 23);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(302, 13);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Si no se introducen valores tendra por defecto el rango (1 - 10)";
             // 
             // btnAceptar
             // 
@@ -428,20 +396,52 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // label8
+            // txtMax
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(572, 23);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(302, 13);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Si no se introducen valores tendra por defecto el rango (1 - 10)";
+            this.txtMax.Location = new System.Drawing.Point(333, 18);
+            this.txtMax.Name = "txtMax";
+            this.txtMax.Size = new System.Drawing.Size(100, 20);
+            this.txtMax.TabIndex = 4;
+            // 
+            // txtMin
+            // 
+            this.txtMin.Location = new System.Drawing.Point(175, 18);
+            this.txtMin.Name = "txtMin";
+            this.txtMin.Size = new System.Drawing.Size(100, 20);
+            this.txtMin.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(288, 21);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(39, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Max = ";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(138, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Min = ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 21);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(94, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Rango de valores.";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1136, 824);
+            this.ClientSize = new System.Drawing.Size(1136, 819);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
