@@ -365,35 +365,47 @@ namespace AplicacionTestMatriz.logica
         {
             tiempoRusos.Restart();
 
-            int m = (int)Math.Log(n,2);
-           
-            int nm = (int)Math.Round(Convert.ToDouble(n/m));
+            int m = (int)Math.Floor(Math.Log(n,2));
 
-            int[,] rowsumA = new int[n,nm];
-            rowsumA = matA;
+            int nm = (int)Math.Ceiling(Convert.ToDouble(n / m));
 
-            int[,] rowsumB = new int[nm, n];
-            rowsumB = matB;
+            int iteradorJ = 0;
 
-            int[,] rowsum = new int[n, n];
+            int posMatrizB = 0;
+          
+            int[] rowsum = new int[n];
+            int[,] c = new int[n, n];
 
             for (int i = 1; i < nm; i++)
             {
-                rowsum[0,i-1] = 0;
-
-                for (int j = 1; j < (Math.Pow(2,m)-1); j++)
+                for (int l = 0; l < n; l++)
                 {
-                    int k = (int)Math.Log(j, 2);
+                    rowsum[l] = 0;
+                }
+
+                iteradorJ = (int)(Math.Pow(2, m) - 1);
+
+                for (int j = 1; j < iteradorJ; j++)
+                {
+                    int k = (int)Math.Floor(Math.Log(j, 2)); 
                     int jmenos2k = j - (int)Math.Pow(2, k);
-                    //rowsum[j] = rowsum[jmenos2k] +...;
+                    rowsum[j] = rowsum[jmenos2k] + matB[k + posMatrizB, k + 1 + posMatrizB];                       
                 }
                 for (int k = 1; k < n; k++)
                 {
-                    
-                }
-            }           
+                    //C[i, k] = rowsum[invertir(matA[i, k]);
+                }                              
+                posMatrizB += nm;
+            }            
             tiempoRusos.Stop();
             return matrizC;
+        }
+
+        public int invertir(byte[] rowsum)
+        {       
+            Array.Reverse(rowsum);
+            int pos = BitConverter.ToInt32(rowsum, 0);
+            return pos;
         }
 
         public List<Experimentacion> experimentacion(int n)

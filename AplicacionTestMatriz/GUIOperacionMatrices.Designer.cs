@@ -1,6 +1,6 @@
 ﻿namespace AplicacionTestMatriz
 {
-    partial class Form1
+    partial class GUIOperacionMatrices
     {
         /// <summary>
         /// Variable del diseñador necesaria.

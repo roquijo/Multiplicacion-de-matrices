@@ -13,9 +13,9 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace AplicacionTestMatriz
 {
-    public partial class Form1 : Form
+    public partial class GUIOperacionMatrices : Form
     {
-        public Form1()
+        public GUIOperacionMatrices()
         {
             InitializeComponent();
             
