@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.matrizA = new System.Windows.Forms.DataGridView();
             this.matrizB = new System.Windows.Forms.DataGridView();
             this.matrizC = new System.Windows.Forms.DataGridView();
@@ -69,6 +69,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnRusos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.matrizA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrizB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrizC)).BeginInit();
@@ -158,6 +159,7 @@
             this.txtN.Name = "txtN";
             this.txtN.Size = new System.Drawing.Size(90, 20);
             this.txtN.TabIndex = 8;
+            this.txtN.Text = "8";
             // 
             // btnMultParticion
             // 
@@ -265,16 +267,16 @@
             // 
             // grafico
             // 
-            chartArea1.Name = "ChartArea1";
-            this.grafico.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.grafico.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.grafico.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.grafico.Legends.Add(legend2);
             this.grafico.Location = new System.Drawing.Point(494, 60);
             this.grafico.Name = "grafico";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.grafico.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.grafico.Series.Add(series2);
             this.grafico.Size = new System.Drawing.Size(581, 316);
             this.grafico.TabIndex = 18;
             this.grafico.Text = "chart1";
@@ -325,6 +327,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnRusos);
             this.panel1.Controls.Add(this.matrizC);
             this.panel1.Controls.Add(this.matrizA);
             this.panel1.Controls.Add(this.matrizB);
@@ -402,6 +405,7 @@
             this.txtMax.Name = "txtMax";
             this.txtMax.Size = new System.Drawing.Size(100, 20);
             this.txtMax.TabIndex = 4;
+            this.txtMax.Text = "2";
             // 
             // txtMin
             // 
@@ -409,6 +413,7 @@
             this.txtMin.Name = "txtMin";
             this.txtMin.Size = new System.Drawing.Size(100, 20);
             this.txtMin.TabIndex = 3;
+            this.txtMin.Text = "0";
             // 
             // label7
             // 
@@ -437,7 +442,17 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Rango de valores.";
             // 
-            // Form1
+            // btnRusos
+            // 
+            this.btnRusos.Location = new System.Drawing.Point(843, 220);
+            this.btnRusos.Name = "btnRusos";
+            this.btnRusos.Size = new System.Drawing.Size(75, 23);
+            this.btnRusos.TabIndex = 18;
+            this.btnRusos.Text = "4 Rusos";
+            this.btnRusos.UseVisualStyleBackColor = true;
+            this.btnRusos.Click += new System.EventHandler(this.btnRusos_Click);
+            // 
+            // GUIOperacionMatrices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -445,7 +460,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "Form1";
+            this.Name = "GUIOperacionMatrices";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Aplicación Operaciones con Matrices";
             ((System.ComponentModel.ISupportInitialize)(this.matrizA)).EndInit();
@@ -503,6 +518,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnRusos;
     }
 }
 

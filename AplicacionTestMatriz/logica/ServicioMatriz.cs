@@ -34,7 +34,7 @@ namespace AplicacionTestMatriz.logica
         private static int max = 10;
 
         private static int n = 0;
-
+       
         public static int getN()
         {
             return n;
@@ -133,6 +133,23 @@ namespace AplicacionTestMatriz.logica
         public int[,] llenarMultiplicacionWinograd(int n)
         {
             return multiplicarMatrizWinograd(n, matrizA, matrizB);
+        }
+
+        public int[,] llenarMultiplicacionRusos(int n)
+        {
+            int[,] prueba = multiplicarRusos(n, matrizA, matrizB);
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if(prueba[i, j] > 1)
+                    {
+                        prueba[i, j] = 1;
+                    }
+                }
+            }
+            return prueba;
         }
 
         public static int[,] llenarMatriz(int n, int[,] mat)
@@ -364,49 +381,91 @@ namespace AplicacionTestMatriz.logica
         public int[,] multiplicarRusos(int n, int[,] matA, int[,] matB)
         {
             tiempoRusos.Restart();
-
+                     
             int m = (int)Math.Floor(Math.Log(n,2));
+            
+            int iteradorB = 0;
 
-            int nm = (int)Math.Ceiling(Convert.ToDouble(n / m));
+            int pos = 0;
+
+            int iteradorA = 0;
+
+            int nm = (int)Math.Ceiling(Convert.ToDouble(n)/ Convert.ToDouble(m));
 
             int dosMMenos1 = (int)(Math.Pow(2, m) - 1);
-          
-            int[,] rowsum = new int[dosMMenos1,n];
-            int[] arregloParaInvertir = new int[n];
+            
+            int[] arregloParaInvertir = new int[nm];
             int[,] c = new int[n, n];
 
             for (int i = 1; i <= nm; i++)
             {
-                for (int l = 0; l < n; l++)
+                int[,] rowsum = new int[dosMMenos1 + 1, n];
+
+                for (int j = 1; j <= dosMMenos1; j++)
                 {
-                    rowsum[0,l] = 0;
-                }
-                for (int j = 1; j < dosMMenos1; j++)
-                {
+
                     int k = (int)Math.Floor(Math.Log(j, 2)); 
+
                     int jmenos2k = j - (int)Math.Pow(2, k);
+
+                    iteradorB += k;
                     
                     for (int p = 0; p < n; p++)
                     {
-                        rowsum[j,p] = rowsum[jmenos2k,p] + matB[k,p];
+                        if(iteradorB < n)
+                        {
+                            if (rowsum[jmenos2k, p] + matB[iteradorB, p] >= 1)
+                            {
+                                rowsum[j, p] = 1;
+                            }
+                            else
+                            {
+                                rowsum[j, p] = 0;
+                            }
+                        }
+                        else
+                        {
+                            rowsum[j, p] = rowsum[jmenos2k, p];
+                        }                       
                     }
-                   
+                    iteradorB -= k;
                 }
                 for (int q = 0; q < n; q++)
-                {
+                {                                          
+                    for (int v = 0; v < nm; v++)
+                    {
+                        if (iteradorA < n)
+                        {                                                      
+                            arregloParaInvertir[v] = matA[q, iteradorA];
+                            iteradorA++;
+                        }
+                    }
+                    iteradorA = iteradorB;
+                    arregloParaInvertir = cambiarValores(arregloParaInvertir);
+                    pos = invertir(arregloParaInvertir);                                              
                     for (int w = 0; w < n; w++)
                     {
-                        for (int f = 0; f < n; f++)
-                        {
-                            arregloParaInvertir[f] = matA[f,nm];
-                        }
-                        int pos = invertir(arregloParaInvertir);
-                        c[q,w] = rowsum[pos,w];
+                        c[q, w] += rowsum[pos, w];                       
                     }
-                }                              
+                    arregloParaInvertir = new int[nm];
+                }               
+                iteradorB += nm;
+                iteradorA = iteradorB;
             }            
             tiempoRusos.Stop();
-            return matrizC;
+            return c;
+        }
+
+        private int[] cambiarValores(int[] arregloParaInvertir)
+        {
+           for (int i = 0; i < arregloParaInvertir.Length; i++)
+            {
+                if(arregloParaInvertir[i] > 1)
+                {
+                    arregloParaInvertir[i] = 1;
+                }
+            }
+            return arregloParaInvertir;
         }
 
         public int invertir(int[] arregloParaInvertir)
@@ -416,10 +475,10 @@ namespace AplicacionTestMatriz.logica
 
             String concatenado = "";
 
-            for (int i = 0; i <lengt; i++)
-            {
-                concatenado += arregloParaInvertir[i];
-            }
+                for (int i = 0; i <lengt; i++)
+                {
+                    concatenado += arregloParaInvertir[i];
+                }
             int num = Convert.ToInt32(concatenado);
             int pos = binarioDecimal(num);
             return pos;
@@ -427,7 +486,6 @@ namespace AplicacionTestMatriz.logica
 
         public  int binarioDecimal(int binario)
         {
-
             int numero = 0;
             int digito = 0;
             const int DIVISOR = 10;
