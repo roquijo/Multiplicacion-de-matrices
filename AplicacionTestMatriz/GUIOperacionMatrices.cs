@@ -150,6 +150,10 @@ namespace AplicacionTestMatriz
 
         private void btnExperimentar_Click_1(object sender, EventArgs e)
         {
+
+           int num = serv.invertir();
+           txtM.Text = num+"";
+            /*
             int numFila;
             int iter = 0;
 
@@ -168,6 +172,7 @@ namespace AplicacionTestMatriz
                 gridTiempos.Rows[numFila].Cells[2].Value = exp.getStrassen() + " ms";
                 gridTiempos.Rows[numFila].Cells[3].Value = exp.getWinograd() + " ms";
             }
+            */
         }
 
         private void btnGraficar_Click(object sender, EventArgs e)
