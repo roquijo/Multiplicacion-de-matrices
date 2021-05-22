@@ -60,6 +60,7 @@
             this.Strassen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Winograd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRusos = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
@@ -69,7 +70,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnRusos = new System.Windows.Forms.Button();
+            this.txtRusos = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.Rusos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.matrizA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrizB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.matrizC)).BeginInit();
@@ -194,7 +197,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(844, 49);
+            this.label1.Location = new System.Drawing.Point(845, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 12;
@@ -203,7 +206,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(845, 115);
+            this.label2.Location = new System.Drawing.Point(846, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 13;
@@ -212,7 +215,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(840, 182);
+            this.label3.Location = new System.Drawing.Point(841, 122);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(103, 13);
             this.label3.TabIndex = 14;
@@ -220,21 +223,21 @@
             // 
             // txtParticion
             // 
-            this.txtParticion.Location = new System.Drawing.Point(949, 49);
+            this.txtParticion.Location = new System.Drawing.Point(950, 33);
             this.txtParticion.Name = "txtParticion";
             this.txtParticion.Size = new System.Drawing.Size(100, 20);
             this.txtParticion.TabIndex = 15;
             // 
             // txtStrassen
             // 
-            this.txtStrassen.Location = new System.Drawing.Point(949, 112);
+            this.txtStrassen.Location = new System.Drawing.Point(950, 70);
             this.txtStrassen.Name = "txtStrassen";
             this.txtStrassen.Size = new System.Drawing.Size(100, 20);
             this.txtStrassen.TabIndex = 16;
             // 
             // txtWinograd
             // 
-            this.txtWinograd.Location = new System.Drawing.Point(949, 179);
+            this.txtWinograd.Location = new System.Drawing.Point(950, 119);
             this.txtWinograd.Name = "txtWinograd";
             this.txtWinograd.Size = new System.Drawing.Size(100, 20);
             this.txtWinograd.TabIndex = 17;
@@ -298,10 +301,11 @@
             this.Matriz,
             this.Particion,
             this.Strassen,
-            this.Winograd});
+            this.Winograd,
+            this.Rusos});
             this.gridTiempos.Location = new System.Drawing.Point(8, 60);
             this.gridTiempos.Name = "gridTiempos";
-            this.gridTiempos.Size = new System.Drawing.Size(439, 307);
+            this.gridTiempos.Size = new System.Drawing.Size(442, 307);
             this.gridTiempos.TabIndex = 23;
             // 
             // Matriz
@@ -327,6 +331,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txtRusos);
+            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.btnRusos);
             this.panel1.Controls.Add(this.matrizC);
             this.panel1.Controls.Add(this.matrizA);
@@ -350,6 +356,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1089, 258);
             this.panel1.TabIndex = 24;
+            // 
+            // btnRusos
+            // 
+            this.btnRusos.Location = new System.Drawing.Point(843, 220);
+            this.btnRusos.Name = "btnRusos";
+            this.btnRusos.Size = new System.Drawing.Size(75, 23);
+            this.btnRusos.TabIndex = 18;
+            this.btnRusos.Text = "4 Rusos";
+            this.btnRusos.UseVisualStyleBackColor = true;
+            this.btnRusos.Click += new System.EventHandler(this.btnRusos_Click);
             // 
             // panel2
             // 
@@ -442,15 +458,26 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Rango de valores.";
             // 
-            // btnRusos
+            // txtRusos
             // 
-            this.btnRusos.Location = new System.Drawing.Point(843, 220);
-            this.btnRusos.Name = "btnRusos";
-            this.btnRusos.Size = new System.Drawing.Size(75, 23);
-            this.btnRusos.TabIndex = 18;
-            this.btnRusos.Text = "4 Rusos";
-            this.btnRusos.UseVisualStyleBackColor = true;
-            this.btnRusos.Click += new System.EventHandler(this.btnRusos_Click);
+            this.txtRusos.Location = new System.Drawing.Point(950, 162);
+            this.txtRusos.Name = "txtRusos";
+            this.txtRusos.Size = new System.Drawing.Size(100, 20);
+            this.txtRusos.TabIndex = 20;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(841, 165);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(96, 13);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Tiempo 4 Rusos = ";
+            // 
+            // Rusos
+            // 
+            this.Rusos.HeaderText = "4 Rusos";
+            this.Rusos.Name = "Rusos";
             // 
             // GUIOperacionMatrices
             // 
@@ -519,6 +546,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnRusos;
+        private System.Windows.Forms.TextBox txtRusos;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rusos;
     }
 }
 

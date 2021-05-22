@@ -82,18 +82,32 @@ namespace AplicacionTestMatriz.logica
         }
 
         public static void crearMatrizA(int n)
-        {
-            matrizA = new int[n, n];
+        {          
+                matrizA = new int[n, n];          
         }
 
         public static void crearMatrizB(int n)
         {
-            matrizB = new int[n, n];
+            if(n%2 == 1)
+            {
+                matrizB = new int[n+1, n+1];
+            }
+            else
+            {
+                matrizB = new int[n, n];
+            }           
         }
 
         public static void crearMatrizC(int n)
         {
-            matrizC = new int[n, n];
+            if (n % 2 == 1)
+            {
+                matrizC = new int[n + 1, n + 1];
+            }
+            else
+            {
+                matrizC = new int[n, n];
+            }
         }
         public static int[,] crearMatrizExperimentacion(int n)
         {
@@ -155,20 +169,7 @@ namespace AplicacionTestMatriz.logica
         public static int[,] llenarMatriz(int n, int[,] mat)
         {
             int x;
-
-            if (n % 2 == 1)
-            {
-                for (int i = 0; i < n - 1; i++)
-                {
-                    for (int j = 0; j < n - 1; j++)
-                    {
-                        x = generador.Next(min, max);
-                        mat[i, j] = x;
-                    }
-                }
-            }
-            else
-            {
+            
                 for (int i = 0; i < n; i++)
                 {
                     for (int j = 0; j < n; j++)
@@ -177,8 +178,7 @@ namespace AplicacionTestMatriz.logica
                         mat[i, j] = x;
 
                     }
-                }
-            }           
+                }            
             return mat;
         }
 
@@ -444,8 +444,15 @@ namespace AplicacionTestMatriz.logica
                     arregloParaInvertir = cambiarValores(arregloParaInvertir);
                     pos = invertir(arregloParaInvertir);                                              
                     for (int w = 0; w < n; w++)
-                    {
-                        c[q, w] += rowsum[pos, w];                       
+                    {                       
+                            if (pos >= dosMMenos1 + 1)
+                            {
+                                c[q, w] += rowsum[dosMMenos1, w];
+                            }
+                            else
+                            {
+                                c[q, w] += rowsum[pos, w];
+                            }                                                                                
                     }
                     arregloParaInvertir = new int[nm];
                 }               
@@ -479,18 +486,18 @@ namespace AplicacionTestMatriz.logica
                 {
                     concatenado += arregloParaInvertir[i];
                 }
-            int num = Convert.ToInt32(concatenado);
+            long num = Convert.ToInt64(concatenado);
             int pos = binarioDecimal(num);
             return pos;
         }
 
-        public  int binarioDecimal(int binario)
+        public  int binarioDecimal(long binario)
         {
             int numero = 0;
             int digito = 0;
             const int DIVISOR = 10;
 
-            for (int i = binario, j = 0; i > 0; i /= DIVISOR, j++)
+            for (long i = binario, j = 0; i > 0; i /= DIVISOR, j++)
             {
                 digito = (int)i % DIVISOR;
                 if (digito != 1 && digito != 0)

@@ -29,11 +29,11 @@ namespace AplicacionTestMatriz
         {
 
             ServicioMatriz.setN(Convert.ToInt32(txtN.Text));
-            n = ServicioMatriz.getN();
-            crearMatriz(matrizA);
-            ServicioMatriz.crearMatrizA(n);
-            crearMatriz(matrizB);
+            n = ServicioMatriz.getN();            
+            ServicioMatriz.crearMatrizA(n);            
             ServicioMatriz.crearMatrizB(n);
+            crearMatriz(matrizA);
+            crearMatriz(matrizB);
         }
 
         private void llenarMatriz(DataGridView dgv, int[,] mat)
@@ -51,29 +51,59 @@ namespace AplicacionTestMatriz
         {
             DataTable dt = new DataTable();
             DataRow dr;
-
-            for (int i = 1; i <= n; i++)
+            if(n%2 == 1)
             {
-                dt.Columns.Add(new DataColumn("C" + i));
-            }
-
-            for (int i = 0; i < n; i++)
-            {
-                dr = dt.NewRow();
-                int j = 1;
-                while (j <= n)
+                n ++;
+                for (int i = 1; i <= n; i++)
                 {
-                    dr["C" + j] = "";
-                    j++;
+                    dt.Columns.Add(new DataColumn("C" + i));
                 }
-                dt.Rows.Add(dr);
-            }
-            mat.DataSource = dt;
 
-            for (int i = 0; i < n; i++)
-            {
-                mat.Columns[i].Width = 30;
+                for (int i = 0; i < n; i++)
+                {
+                    dr = dt.NewRow();
+                    int j = 1;
+                    while (j <= n)
+                    {
+                        dr["C" + j] = "";
+                        j++;
+                    }
+                    dt.Rows.Add(dr);
+                }
+                mat.DataSource = dt;
+
+                for (int i = 0; i < n; i++)
+                {
+                    mat.Columns[i].Width = 30;
+                }
+                n--;
             }
+            else
+            {
+                for (int i = 1; i <= n; i++)
+                {
+                    dt.Columns.Add(new DataColumn("C" + i));
+                }
+
+                for (int i = 0; i < n; i++)
+                {
+                    dr = dt.NewRow();
+                    int j = 1;
+                    while (j <= n)
+                    {
+                        dr["C" + j] = "";
+                        j++;
+                    }
+                    dt.Rows.Add(dr);
+                }
+                mat.DataSource = dt;
+
+                for (int i = 0; i < n; i++)
+                {
+                    mat.Columns[i].Width = 30;
+                }
+            }
+            
         }
 
         private void btnLlenarMatriz_Click(object sender, EventArgs e)
@@ -168,6 +198,7 @@ namespace AplicacionTestMatriz
                 gridTiempos.Rows[numFila].Cells[1].Value = exp.getParticion() + " ms";
                 gridTiempos.Rows[numFila].Cells[2].Value = exp.getStrassen() + " ms";
                 gridTiempos.Rows[numFila].Cells[3].Value = exp.getWinograd() + " ms";
+                gridTiempos.Rows[numFila].Cells[4].Value = exp.getRusos() + " ms";
             }            
         }
 
@@ -184,7 +215,7 @@ namespace AplicacionTestMatriz
             serieWinograd.ChartType = SeriesChartType.Line;
 
             Series serieRusos = new Series("Rusos");
-            serieWinograd.ChartType = SeriesChartType.Line;
+            serieRusos.ChartType = SeriesChartType.Line;
 
             double[] puntosYParticion = new double[listaExp.Count];
             double[] puntosYStrassen = new double[listaExp.Count];
@@ -236,7 +267,8 @@ namespace AplicacionTestMatriz
             int[,] matTem;
 
             matTem = serv.llenarMultiplicacionRusos(n);
-            llenarMatriz(matrizC, matTem);           
+            llenarMatriz(matrizC, matTem);
+            txtRusos.Text = serv.getTiempoRusos().Elapsed.TotalMilliseconds + " ms";
         }
     }
 }
