@@ -15,6 +15,10 @@ namespace AplicacionTestMatriz.logica
 
         private static int[,] matrizC;
 
+        private static int[,] matrizPruebaA = new int[8, 8];
+        private static int[,] matrizPruebaB = new int[8, 8];
+
+
         private static int[,] matrizExperimentacion;
 
         private  Stopwatch tiempoParticion = new Stopwatch();
@@ -34,7 +38,166 @@ namespace AplicacionTestMatriz.logica
         private static int max = 2;
 
         private static int n = 0;
-       
+
+        public static int[,] crearMatrizPruebaB()
+        {           
+
+            matrizPruebaB[0, 0] = 1;
+            matrizPruebaB[0, 1] = 1;
+            matrizPruebaB[0, 2] = 0;
+            matrizPruebaB[0, 3] = 1;
+            matrizPruebaB[0, 4] = 1;
+            matrizPruebaB[0, 5] = 0;
+            matrizPruebaB[0, 6] = 0;
+            matrizPruebaB[0, 7] = 0;
+
+            matrizPruebaB[1, 0] = 0;
+            matrizPruebaB[1, 1] = 0;
+            matrizPruebaB[1, 2] = 0;
+            matrizPruebaB[1, 3] = 0;
+            matrizPruebaB[1, 4] = 1;
+            matrizPruebaB[1, 5] = 0;
+            matrizPruebaB[1, 6] = 0;
+            matrizPruebaB[1, 7] = 1;
+
+            matrizPruebaB[2, 0] = 1;
+            matrizPruebaB[2, 1] = 0;
+            matrizPruebaB[2, 2] = 0;
+            matrizPruebaB[2, 3] = 0;
+            matrizPruebaB[2, 4] = 0;
+            matrizPruebaB[2, 5] = 0;
+            matrizPruebaB[2, 6] = 0;
+            matrizPruebaB[2, 7] = 0;
+
+            matrizPruebaB[3, 0] = 0;
+            matrizPruebaB[3, 1] = 0;
+            matrizPruebaB[3, 2] = 1;
+            matrizPruebaB[3, 3] = 0;
+            matrizPruebaB[3, 4] = 1;
+            matrizPruebaB[3, 5] = 1;
+            matrizPruebaB[3, 6] = 1;
+            matrizPruebaB[3, 7] = 1;
+
+            matrizPruebaB[4, 0] = 1;
+            matrizPruebaB[4, 1] = 1;
+            matrizPruebaB[4, 2] = 1;
+            matrizPruebaB[4, 3] = 0;
+            matrizPruebaB[4, 4] = 0;
+            matrizPruebaB[4, 5] = 0;
+            matrizPruebaB[4, 6] = 0;
+            matrizPruebaB[4, 7] = 0;
+
+            matrizPruebaB[5, 0] = 0;
+            matrizPruebaB[5, 1] = 1;
+            matrizPruebaB[5, 2] = 1;
+            matrizPruebaB[5, 3] = 0;
+            matrizPruebaB[5, 4] = 1;
+            matrizPruebaB[5, 5] = 0;
+            matrizPruebaB[5, 6] = 1;
+            matrizPruebaB[5, 7] = 1;
+
+            matrizPruebaB[6, 0] = 0;
+            matrizPruebaB[6, 1] = 0;
+            matrizPruebaB[6, 2] = 0;
+            matrizPruebaB[6, 3] = 0;
+            matrizPruebaB[6, 4] = 1;
+            matrizPruebaB[6, 5] = 1;
+            matrizPruebaB[6, 6] = 1;
+            matrizPruebaB[6, 7] = 0;
+
+            matrizPruebaB[7, 0] = 0;
+            matrizPruebaB[7, 1] = 1;
+            matrizPruebaB[7, 2] = 0;
+            matrizPruebaB[7, 3] = 0;
+            matrizPruebaB[7, 4] = 1;
+            matrizPruebaB[7, 5] = 0;
+            matrizPruebaB[7, 6] = 1;
+            matrizPruebaB[7, 7] = 0;
+
+
+            return matrizPruebaB;
+        }
+
+        public static int[,] crearMatrizPruebaA()
+        {
+
+            matrizPruebaA[0, 0] = 0;
+            matrizPruebaA[0, 1] = 0;
+            matrizPruebaA[0, 2] = 1;
+            matrizPruebaA[0, 3] = 0;
+            matrizPruebaA[0, 4] = 0;
+            matrizPruebaA[0, 5] = 0;
+            matrizPruebaA[0, 6] = 1;
+            matrizPruebaA[0, 7] = 0;
+
+            matrizPruebaA[1, 0] = 1;
+            matrizPruebaA[1, 1] = 0;
+            matrizPruebaA[1, 2] = 0;
+            matrizPruebaA[1, 3] = 1;
+            matrizPruebaA[1, 4] = 1;
+            matrizPruebaA[1, 5] = 0;
+            matrizPruebaA[1, 6] = 1;
+            matrizPruebaA[1, 7] = 0;
+
+            matrizPruebaA[2, 0] = 1;
+            matrizPruebaA[2, 1] = 1;
+            matrizPruebaA[2, 2] = 1;
+            matrizPruebaA[2, 3] = 1;
+            matrizPruebaA[2, 4] = 1;
+            matrizPruebaA[2, 5] = 0;
+            matrizPruebaA[2, 6] = 1;
+            matrizPruebaA[2, 7] = 0;
+
+            matrizPruebaA[3, 0] = 1;
+            matrizPruebaA[3, 1] = 0;
+            matrizPruebaA[3, 2] = 0;
+            matrizPruebaA[3, 3] = 0;
+            matrizPruebaA[3, 4] = 1;
+            matrizPruebaA[3, 5] = 0;
+            matrizPruebaA[3, 6] = 1;
+            matrizPruebaA[3, 7] = 0;
+
+            matrizPruebaA[4, 0] = 1;
+            matrizPruebaA[4, 1] = 1;
+            matrizPruebaA[4, 2] = 0;
+            matrizPruebaA[4, 3] = 0;
+            matrizPruebaA[4, 4] = 0;
+            matrizPruebaA[4, 5] = 0;
+            matrizPruebaA[4, 6] = 1;
+            matrizPruebaA[4, 7] = 1;
+
+            matrizPruebaA[5, 0] = 1;
+            matrizPruebaA[5, 1] = 0;
+            matrizPruebaA[5, 2] = 1;
+            matrizPruebaA[5, 3] = 1;
+            matrizPruebaA[5, 4] = 0;
+            matrizPruebaA[5, 5] = 1;
+            matrizPruebaA[5, 6] = 0;
+            matrizPruebaA[5, 7] = 0;
+
+            matrizPruebaA[6, 0] = 0;
+            matrizPruebaA[6, 1] = 0;
+            matrizPruebaA[6, 2] = 0;
+            matrizPruebaA[6, 3] = 1;
+            matrizPruebaA[6, 4] = 0;
+            matrizPruebaA[6, 5] = 0;
+            matrizPruebaA[6, 6] = 1;
+            matrizPruebaA[6, 7] = 0;
+
+            matrizPruebaA[7, 0] = 0;
+            matrizPruebaA[7, 1] = 1;
+            matrizPruebaA[7, 2] = 1;
+            matrizPruebaA[7, 3] = 1;
+            matrizPruebaA[7, 4] = 0;
+            matrizPruebaA[7, 5] = 1;
+            matrizPruebaA[7, 6] = 0;
+            matrizPruebaA[7, 7] = 0;
+
+
+            return matrizPruebaA;
+        }
+
+
         public static int getN()
         {
             return n;
@@ -152,12 +315,11 @@ namespace AplicacionTestMatriz.logica
         public int[,] llenarMultiplicacionRusos(int n)
         {
             int[,] prueba = multiplicarRusos(n, matrizA, matrizB);
-
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < n; j++)
                 {
-                    if(prueba[i, j] > 1)
+                    if(prueba[i, j] >= 1)
                     {
                         prueba[i, j] = 1;
                     }
@@ -382,7 +544,7 @@ namespace AplicacionTestMatriz.logica
         {
             tiempoRusos.Restart();
                      
-            int m = (int)(Math.Log(n,2));
+            int m = (int)Math.Floor((Math.Log(n,2)));
             
             int iteradorB = 0;            
 
@@ -400,7 +562,7 @@ namespace AplicacionTestMatriz.logica
 
                 for (int j = 1; j < dosM; j++)
                 {
-                    int k = (int)(Math.Log(j, 2)); 
+                    int k = (int)Math.Floor((Math.Log(j, 2))); 
 
                     int jmenos2k = Math.Abs(j - (int)Math.Pow(2, k));
 
@@ -435,13 +597,12 @@ namespace AplicacionTestMatriz.logica
                     
                     for (int w = 0; w < n; w++)
                     {                       
-                        if (pos <= dosM)
+                        if (pos < dosM)
                         {
                             c[q, w] += rowsum[pos, w];
                         }                        
                     }
-                    arregloParaInvertir = new int[nm];
-                 
+                    arregloParaInvertir = new int[nm];                 
                 }               
                 iteradorB += nm;
                 iteradorA = iteradorB;

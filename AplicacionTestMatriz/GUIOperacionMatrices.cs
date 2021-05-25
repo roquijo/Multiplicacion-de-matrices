@@ -110,9 +110,10 @@ namespace AplicacionTestMatriz
         {
             int[,] matTem;
 
+            //matTem = ServicioMatriz.crearMatrizPruebaA();
             matTem = ServicioMatriz.llenarMatrizA(n);
             llenarMatriz(matrizA, matTem);
-
+            //matTem = ServicioMatriz.crearMatrizPruebaB();
             matTem = ServicioMatriz.llenarMatrizB(n);
             llenarMatriz(matrizB, matTem);
         }
