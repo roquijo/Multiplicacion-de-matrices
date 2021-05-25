@@ -216,6 +216,7 @@ namespace AplicacionTestMatriz
 
             Series serieRusos = new Series("Rusos");
             serieRusos.ChartType = SeriesChartType.Line;
+            serieRusos.Font = new Font("Arial", 20);
 
             double[] puntosYParticion = new double[listaExp.Count];
             double[] puntosYStrassen = new double[listaExp.Count];

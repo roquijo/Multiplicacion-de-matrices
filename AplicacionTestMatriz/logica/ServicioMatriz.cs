@@ -29,9 +29,9 @@ namespace AplicacionTestMatriz.logica
 
         private  List<Experimentacion> listaExperimentacion;
 
-        private static int min = 1;
+        private static int min = 0;
 
-        private static int max = 10;
+        private static int max = 2;
 
         private static int n = 0;
        
@@ -382,54 +382,43 @@ namespace AplicacionTestMatriz.logica
         {
             tiempoRusos.Restart();
                      
-            int m = (int)Math.Floor(Math.Log(n,2));
+            int m = (int)(Math.Log(n,2));
             
-            int iteradorB = 0;
-
-            int pos = 0;
+            int iteradorB = 0;            
 
             int iteradorA = 0;
 
             int nm = (int)Math.Ceiling(Convert.ToDouble(n)/ Convert.ToDouble(m));
-
-            int dosMMenos1 = (int)(Math.Pow(2, m) - 1);
+            int dosM = (int)(Math.Pow(2, m));
             
             int[] arregloParaInvertir = new int[nm];
             int[,] c = new int[n, n];
 
             for (int i = 1; i <= nm; i++)
             {
-                int[,] rowsum = new int[dosMMenos1 + 1, n];
+                int[,] rowsum = new int[dosM, n];
 
-                for (int j = 1; j <= dosMMenos1; j++)
+                for (int j = 1; j < dosM; j++)
                 {
+                    int k = (int)(Math.Log(j, 2)); 
 
-                    int k = (int)Math.Floor(Math.Log(j, 2)); 
+                    int jmenos2k = Math.Abs(j - (int)Math.Pow(2, k));
 
-                    int jmenos2k = j - (int)Math.Pow(2, k);
-
-                    iteradorB += k;
+                    iteradorB += k;                  
                     
                     for (int p = 0; p < n; p++)
                     {
-                        if(iteradorB < n)
+                        if(iteradorB >= n)
                         {
-                            if (rowsum[jmenos2k, p] + matB[iteradorB, p] >= 1)
-                            {
-                                rowsum[j, p] = 1;
-                            }
-                            else
-                            {
-                                rowsum[j, p] = 0;
-                            }
+                            rowsum[j, p] = rowsum[jmenos2k, p];
                         }
                         else
                         {
-                            rowsum[j, p] = rowsum[jmenos2k, p];
-                        }                       
+                            rowsum[j, p] = rowsum[jmenos2k, p] + matB[iteradorB, p];
+                        }                                             
                     }
                     iteradorB -= k;
-                }
+                }                                
                 for (int q = 0; q < n; q++)
                 {                                          
                     for (int v = 0; v < nm; v++)
@@ -439,22 +428,20 @@ namespace AplicacionTestMatriz.logica
                             arregloParaInvertir[v] = matA[q, iteradorA];
                             iteradorA++;
                         }
-                    }
+                    }                     
                     iteradorA = iteradorB;
-                    arregloParaInvertir = cambiarValores(arregloParaInvertir);
-                    pos = invertir(arregloParaInvertir);                                              
+                   
+                    int pos = obtenerValor(arregloParaInvertir);                                              
+                    
                     for (int w = 0; w < n; w++)
                     {                       
-                            if (pos >= dosMMenos1 + 1)
-                            {
-                                c[q, w] += rowsum[dosMMenos1, w];
-                            }
-                            else
-                            {
-                                c[q, w] += rowsum[pos, w];
-                            }                                                                                
+                        if (pos <= dosM)
+                        {
+                            c[q, w] += rowsum[pos, w];
+                        }                        
                     }
                     arregloParaInvertir = new int[nm];
+                 
                 }               
                 iteradorB += nm;
                 iteradorA = iteradorB;
@@ -462,51 +449,18 @@ namespace AplicacionTestMatriz.logica
             tiempoRusos.Stop();
             return c;
         }
-
-        private int[] cambiarValores(int[] arregloParaInvertir)
-        {
-           for (int i = 0; i < arregloParaInvertir.Length; i++)
-            {
-                if(arregloParaInvertir[i] > 1)
-                {
-                    arregloParaInvertir[i] = 1;
-                }
-            }
-            return arregloParaInvertir;
-        }
-
-        public int invertir(int[] arregloParaInvertir)
+        
+        public int obtenerValor(int[] arregloParaInvertir)
         {            
-            int lengt = arregloParaInvertir.Length;
-            Array.Reverse(arregloParaInvertir);
-
-            String concatenado = "";
-
-                for (int i = 0; i <lengt; i++)
-                {
-                    concatenado += arregloParaInvertir[i];
-                }
-            long num = Convert.ToInt64(concatenado);
-            int pos = binarioDecimal(num);
-            return pos;
-        }
-
-        public  int binarioDecimal(long binario)
-        {
-            int numero = 0;
-            int digito = 0;
-            const int DIVISOR = 10;
-
-            for (long i = binario, j = 0; i > 0; i /= DIVISOR, j++)
+            int lengt = arregloParaInvertir.Length;           
+            int sum = 0;            
+            
+            for (int i = 0; i <lengt; i++)
             {
-                digito = (int)i % DIVISOR;
-                if (digito != 1 && digito != 0)
-                {
-                    return -1;
-                }
-                numero += digito * (int)Math.Pow(2, j);
+                sum += (arregloParaInvertir[i] * (int)Math.Pow(2, i));                 
             }
-            return numero;
+                
+            return sum;
         }
 
         public List<Experimentacion> experimentacion(int n)
