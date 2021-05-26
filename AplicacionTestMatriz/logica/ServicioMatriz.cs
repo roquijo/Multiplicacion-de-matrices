@@ -564,8 +564,12 @@ namespace AplicacionTestMatriz.logica
                 {
                     int k = (int)Math.Floor((Math.Log(j, 2))); 
 
-                    int jmenos2k = Math.Abs(j - (int)Math.Pow(2, k));
+                    int jmenos2k = j - (int)Math.Pow(2, k);
 
+                    if(jmenos2k < 0)
+                    {
+                        jmenos2k = 0;
+                    }
                     iteradorB += k;                  
                     
                     for (int p = 0; p < n; p++)
